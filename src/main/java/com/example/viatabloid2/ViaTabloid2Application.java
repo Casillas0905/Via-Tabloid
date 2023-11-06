@@ -12,7 +12,7 @@ public class ViaTabloid2Application {
 
     @GetMapping("/")
     public String getMessage(){
-        return "Welcome to Java";
+        return "Welcome to Javaf";
     }
     public static void main(String[] args) {
         SpringApplication.run(ViaTabloid2Application.class, args);
