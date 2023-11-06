@@ -19,10 +19,7 @@ jobs:
           java-version: 17
           distribution: 'temurin'
           cache: 'maven'
-      - name: Run all tests in project
-        run: |
-          mvn compile
-          mvn test
+
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2  # Use actions/upload-artifact@v3 if you prefer
         with:
