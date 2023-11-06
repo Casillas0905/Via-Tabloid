@@ -1,44 +1,54 @@
-  name: Run Tests and Archive Code Coverage
+name: Run Tests and Archive Code Coverage
 
-  on:
-    push:
-      branches:
-        - main
-    workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-  jobs:
-    run_tests:
-      runs-on: ubuntu-latest
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v2  # Use actions/checkout@v3 if you prefer
-        - name: Set up JDK 17
-          uses: actions/setup-java@v2  # Use actions/setup-java@v3 if you prefer
-          with:
-            java-version: 17
-            distribution: 'temurin'
-            cache: 'maven'
-        - name: Run all tests in project
-          run: |
-            mvn compile
-            mvn test
-        - name: Archive code coverage results
-          uses: actions/upload-artifact@v2  # Use actions/upload-artifact@v3 if you prefer
-          with:
-            name: test-coverage-report
-            path: target/site/jacoco/
-            retention-days: 7
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-        - name: Login to GitHub Container Registry
-          uses: docker/login-action@v3
-          with:
-            registry: ghcr.io
-            username: ${{ github.actor }}
-            password: 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
-        - name: Build and publish updated image
-          run: |
-            mvn package
-            docker build . --tag ghcr.io/casillas0905/testkubernetes:latest
-            docker push ghcr.io/casillas0905/testkubernetes:latest
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: 'maven'
 
+      - name: Start Docker Compose
+        run: docker-compose -f docker-compose.test.yaml up -d
+
+      - name: Wait for Containers to Start
+        run: sleep 30  # Adjust as needed to allow time for containers to start
+
+      - name: Run Tests
+        run: mvn compile test
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-coverage-report
+          path: target/site/jacoco/
+          retention-days: 7
+
+      - name: Stop Docker Compose
+        run: docker-compose -f docker-compose.test.yaml down
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: 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
+
+      - name: Build and publish updated image
+        run: |
+          mvn package
+          docker build . --tag ghcr.io/casillas0905/via-tabloid:latest
+          docker push ghcr.io/casillas0905/via-tabloid:latest

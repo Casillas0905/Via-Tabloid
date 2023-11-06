@@ -17,7 +17,7 @@ services:
     image: 'devops-demo:latest'
     build:
       context: ./
-    container_name: 'devops-demo-container'
+    container_name: ghcr.io/casillas0905/via-tabloid:latest
     ports:
       - 8080:8080
     depends_on:
@@ -25,7 +25,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/doc-db
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_PASSWORD=Iker0905
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 volumes:
