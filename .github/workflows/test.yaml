@@ -22,7 +22,7 @@ jobs:
           cache: 'maven'
 
       - name: Start Docker Compose
-        run: docker-compose -f "C:\Users\ikers\OneDrive - ViaUC\Via\4 semester\DOC1\Via Tabloid\docker-compose.yml" up -d
+        run: docker-compose -f "C:/Users/ikers/OneDrive - ViaUC/Via/4 semester/DOC1/Via Tabloid/docker-compose.yml" up -d
 
       - name: Wait for Containers to Start
         run: sleep 30  # Adjust as needed to allow time for containers to start
