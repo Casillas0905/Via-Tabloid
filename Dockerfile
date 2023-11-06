@@ -7,6 +7,3 @@ VOLUME /backend_volume
 ADD /target/*.jar container-example-0.0.1-SNAPSHOT.jar
 #start the app
 ENTRYPOINT ["java","-jar","/container-example-0.0.1-SNAPSHOT.jar"]
-
-
-hola
