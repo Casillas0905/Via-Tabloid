@@ -35,7 +35,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: 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
+          password: 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
       - name: Build and publish updated image
         run: |
             mvn package
