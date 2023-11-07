@@ -33,6 +33,6 @@ spec:
     app: k8s-doc-example
   ports:
     - protocol: TCP
-      port: 8088
+      port: 80
       targetPort: 8088
   type: NodePort

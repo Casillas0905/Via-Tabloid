@@ -1,11 +1,9 @@
-
-
 FROM openjdk:17-alpine
-# Expose port
+#Expose port
 EXPOSE 8080
-# Set a working directory
-WORKDIR /app
-# Copy the JAR file from your local machine to the image
-COPY target/*.jar app.jar
-# Start the application
-CMD ["java", "-jar", "app.jar"]
+#set dockerfile volume if you want
+VOLUME /backend_volume
+#add the jar file
+ADD /target/*.jar container-example-0.0.1-SNAPSHOT.jar
+#start the app
+ENTRYPOINT ["java","-jar","/container-example-0.0.1-SNAPSHOT.jar"]
