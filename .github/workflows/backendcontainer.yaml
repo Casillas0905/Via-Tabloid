@@ -26,6 +26,8 @@ jobs:
           docker build . --tag ghcr.io/casillas0905/devops-demo:latest
           docker push ghcr.io/casillas0905/devops-demo:latest
 
+      - name: Build and push PostgreSQL Docker image
+        run: docker pull postgres:14.1-alpine
         # Additional steps to customize and push the PostgreSQL image if needed
 
       # Add more steps for other services if necessary
