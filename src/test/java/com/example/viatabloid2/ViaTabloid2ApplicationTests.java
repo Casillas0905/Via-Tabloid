@@ -8,11 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ViaTabloid2ApplicationTests {
 
     @Test
-    void contextLoads() {
-
-    }
-
-    @Test
     public void setIdTest() {
         Assertions.assertEquals(1,1 );
     }
