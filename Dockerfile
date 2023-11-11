@@ -7,8 +7,8 @@ EXPOSE 8080
 WORKDIR /app
 
 # Add the JAR file into the container at /app
-COPY target/*.jar /app/container-example-0.0.1-SNAPSHOT.jar
+COPY target/*.jar /app/spring-boot-docker-0.0.1-SNAPSHOT.jar
 
 # Start the application
-ENTRYPOINT ["java", "-jar", "container-example-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "spring-boot-docker-0.0.1-SNAPSHOT.jar"]
 
