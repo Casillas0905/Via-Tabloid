@@ -1,0 +1,22 @@
+name: Start Docker Compose
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  start_docker_compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: docker-compose -f "docker-compose.yml" up -d
+
+      - name: Wait for Containers to Start
+        run: sleep 30  # Adjust as needed to allow time for containers to start
+
+  # Add more jobs or steps as needed for your specific workflow
